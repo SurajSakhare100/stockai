@@ -20,10 +20,6 @@ interface StockDataResult {
   ticker?: string;
 }
 
-interface ErrorType {
-  message: string;
-}
-
 // Common stock symbols for reference
 const COMMON_SYMBOLS = {
   'AAPL': 'Apple Inc.',
@@ -93,11 +89,11 @@ export async function fetchStock(symbol: string): Promise<StockDataResult> {
       ticker: cleanSymbol,
       data: formattedData
     };
-  } catch (e: ErrorType) {
+  } catch (e: unknown) {
     console.error(`Error fetching data for ${symbol}:`, e);
     return {
       ticker: symbol,
-      error: e.message || `Failed to fetch data for ${symbol}`
+      error: e instanceof Error ? e.message : `Failed to fetch data for ${symbol}`
     };
   }
 }
@@ -126,12 +122,12 @@ export async function fetchStocksData(symbols: string[]): Promise<StockDataResul
         console.error(`Error fetching data for ${validSymbols[index]}:`, promiseResult.reason);
         return {
           ticker: validSymbols[index],
-          error: (promiseResult.reason as ErrorType)?.message || `Failed to fetch data for ${validSymbols[index]}`
+          error: promiseResult.reason instanceof Error ? promiseResult.reason.message : `Failed to fetch data for ${validSymbols[index]}`
         };
       }
     });
-  } catch (e: ErrorType) {
+  } catch (e: unknown) {
     console.error("Unexpected error in fetchStocksData:", e);
-    throw new Error(e.message || "Failed to fetch stocks data");
+    throw new Error(e instanceof Error ? e.message : "Failed to fetch stocks data");
   }
 }
