@@ -87,7 +87,7 @@ export default function StocksPage() {
 
         {todayPrice && (
           <div className="mt-6 p-4 bg-gray-800 rounded-lg">
-            <h2 className="text-xl font-semibold text-white mb-2">Today's Price</h2>
+            <h2 className="text-xl font-semibold text-white mb-2">Today&apos;s Price</h2>
             <p className="text-2xl font-bold text-blue-400">${todayPrice.toFixed(2)}</p>
           </div>
         )}

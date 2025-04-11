@@ -28,7 +28,7 @@ export default function Home() {
           <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-200">
             <h3 className="text-2xl font-semibold mb-4 text-green-600 dark:text-green-400">User-Friendly Interface</h3>
             <p className="text-lg text-gray-600 dark:text-gray-300">
-              Chat with our intuitive AI to receive easy-to-understand insights, whether you're a seasoned investor or just starting out.
+              Chat with our intuitive AI to receive easy-to-understand insights, whether you&apos;re a seasoned investor or just starting out.
             </p>
           </div>
           <div className="p-6 rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-200">
@@ -50,7 +50,7 @@ export default function Home() {
             {
               step: "1",
               title: "Connect",
-              description: "Simply start a conversation with our chatbot and input the stocks you're interested in."
+              description: "Simply start a conversation with our chatbot and input the stocks you&apos;re interested in."
             },
             {
               step: "2",
@@ -88,7 +88,7 @@ export default function Home() {
           {[
             {
               title: "Individual Investors",
-              description: "Whether you're new to investing or looking to optimize your strategy, our chatbot offers insights to help grow your portfolio."
+              description: "Whether you&apos;re new to investing or looking to optimize your strategy, our chatbot offers insights to help grow your portfolio."
             },
             {
               title: "Financial Advisors",
@@ -112,7 +112,7 @@ export default function Home() {
           Start Predicting Your Success Today
         </h2>
         <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
-          Don't let the market's unpredictability hold you back. Join
+          Don&apos;t let the market&apos;s unpredictability hold you back. Join
           countless others who trust our AI-powered chatbot to navigate the
           complexities of the stock market.
         </p>

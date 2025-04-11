@@ -13,10 +13,6 @@ interface StockData {
   error?: string;
 }
 
-type ErrorType = {
-  message: string;
-}
-
 export async function getPrediction(symbol: string) {
   try {
     if (!symbol) {
@@ -73,11 +69,11 @@ ${analysisText}
       success: true,
       prediction: formattedResponse
     };
-  } catch (error: ErrorType) {
+  } catch (error) {
     console.error("Error in getPrediction:", error);
     return {
       success: false,
-      error: error.message || "Failed to generate prediction"
+      error: error instanceof Error ? error.message : "Failed to generate prediction"
     };
   }
 }
