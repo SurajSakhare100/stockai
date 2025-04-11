@@ -13,6 +13,10 @@ interface StockData {
   error?: string;
 }
 
+type ErrorType = {
+  message: string;
+}
+
 export async function getPrediction(symbol: string) {
   try {
     if (!symbol) {
@@ -55,21 +59,21 @@ Format the response as a clear, readable text with numbered sections.`;
 
     const result = await model.generateContent(predictionPrompt);
     const response = await result.response;
-    const analysis = response.text();
+    const analysisText = response.text();
 
     // Format the complete response as a single string
     const formattedResponse = `
-previous Price: $${previousPrice.toFixed(2)} \n
+Previous Price: $${previousPrice.toFixed(2)} \n
 Current Price: $${currentPrice.toFixed(2)} \n
 Price Change: ${priceChange.toFixed(2)}% \n
-
+${analysisText}
 `;
 
     return {
       success: true,
       prediction: formattedResponse
     };
-  } catch (error: any) {
+  } catch (error: ErrorType) {
     console.error("Error in getPrediction:", error);
     return {
       success: false,

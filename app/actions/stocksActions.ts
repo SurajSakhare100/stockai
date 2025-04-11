@@ -1,6 +1,5 @@
 "use server"
 import { restClient } from "@polygon.io/client-js";
-import { IAggs } from "@polygon.io/client-js";
 import {
   yesterdaysDateString,
   getMonthsBackFromYesterday,
@@ -21,6 +20,10 @@ interface StockDataResult {
   ticker?: string;
 }
 
+interface ErrorType {
+  message: string;
+}
+
 // Common stock symbols for reference
 const COMMON_SYMBOLS = {
   'AAPL': 'Apple Inc.',
@@ -33,7 +36,7 @@ const COMMON_SYMBOLS = {
   'JPM': 'JPMorgan Chase & Co.',
   'V': 'Visa Inc.',
   'WMT': 'Walmart Inc.'
-};
+} as const;
 
 export async function fetchStock(symbol: string): Promise<StockDataResult> {
   try {
@@ -90,7 +93,7 @@ export async function fetchStock(symbol: string): Promise<StockDataResult> {
       ticker: cleanSymbol,
       data: formattedData
     };
-  } catch (e: any) {
+  } catch (e: ErrorType) {
     console.error(`Error fetching data for ${symbol}:`, e);
     return {
       ticker: symbol,
@@ -123,11 +126,11 @@ export async function fetchStocksData(symbols: string[]): Promise<StockDataResul
         console.error(`Error fetching data for ${validSymbols[index]}:`, promiseResult.reason);
         return {
           ticker: validSymbols[index],
-          error: promiseResult.reason?.message || `Failed to fetch data for ${validSymbols[index]}`
+          error: (promiseResult.reason as ErrorType)?.message || `Failed to fetch data for ${validSymbols[index]}`
         };
       }
     });
-  } catch (e: any) {
+  } catch (e: ErrorType) {
     console.error("Unexpected error in fetchStocksData:", e);
     throw new Error(e.message || "Failed to fetch stocks data");
   }

@@ -46,6 +46,23 @@ interface Sentiment {
   sentiment: 'positive' | 'negative';
 }
 
+interface RedditApiResponse {
+  data: {
+    children: Array<{
+      data: {
+        id: string;
+        title: string;
+        selftext: string;
+        created_utc: number;
+        score: number;
+        num_comments: number;
+        permalink: string;
+        subreddit: string;
+      }
+    }>
+  }
+}
+
 export async function getSentiment(symbol: string) {
   try {
     
@@ -78,7 +95,7 @@ export async function getSentiment(symbol: string) {
     const fullQuery = `(${searchQuery}) AND (${subredditQuery})`;
 
     // Search for posts
-    const searchResponse = await axios.get(
+    const searchResponse = await axios.get<RedditApiResponse>(
       `https://oauth.reddit.com/search?q=${fullQuery}&sort=relevance&t=week&limit=10&restrict_sr=true`,
       {
         headers: {
@@ -88,7 +105,7 @@ export async function getSentiment(symbol: string) {
     );
 
     const posts = searchResponse.data.data.children
-      .map((child: any) => {
+      .map((child) => {
         const post = child.data;
         return {
           id: post.id,
