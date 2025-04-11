@@ -51,8 +51,8 @@ export default function StocksPage() {
   };
 
   return (
-    <div className="space-y-8 min-h-screen flex flex-col items-center justify-center  font-sans p-6">
-      <div className=" p-6 rounded-lg shadow-lg w-1/2">
+    <div className="space-y-8 min-h-screen flex flex-col items-center justify-start py-6  font-sans ">
+      <div className="rounded-lg shadow-lg w-1/3">
         <h1 className="text-3xl font-bold mb-6 text-white">Stock Market Analysis</h1>
         
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -65,7 +65,7 @@ export default function StocksPage() {
               id="symbol"
               value={symbol}
               onChange={(e) => setSymbol(e.target.value.toUpperCase())}
-              className="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter stock symbol (e.g., AAPL)"
               required
             />

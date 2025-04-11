@@ -35,7 +35,7 @@ export default function SentimentAnalysis() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center  font-sans p-6">
+    <main className="min-h-screen flex flex-col items-center justify-start  font-sans py-6">
       <h1 className="text-4xl font-bold mb-4">Stock Sentiment Analysis</h1>
 
       <p className="mb-6 text-xl">
@@ -44,20 +44,20 @@ export default function SentimentAnalysis() {
 
       <div className="w-full max-w-md flex flex-col items-center">
         <form
-          className="w-full flex items-center mb-4"
+          className="w-full flex  flex-col gap-4  items-center mb-4"
           onSubmit={handleAnalyzeSentiment}
         >
-          <label htmlFor="stock-ticker" className="w-full">
+          <label htmlFor="stock-ticker"  className="w-full">Stock Symbol
+          </label>
             <input
               type="text"
               value={ticker}
               onChange={(e) => setTicker(e.target.value)}
               placeholder="Enter a ticker (e.g. AAPL)"
-              className="w-full px-4 py-2 rounded-l-md text-black outline-none focus:ring-2 focus:ring-purple-300"
+              className="w-full px-4 py-2 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-          </label>
 
-          <button className="bg-green-400 hover:bg-green-500 font-bold px-4 py-2 rounded-r-md transition duration-300">
+          <button className="bg-blue-600 hover:bg-blue-700 font-bold px-4 py-2 w-full rounded-md">
             Analyze
           </button>
         </form>

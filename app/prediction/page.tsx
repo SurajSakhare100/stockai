@@ -29,14 +29,17 @@ export default function PredictionPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black p-4 flex justify-center items-center flex-shrink-0">
-      <div className="mx-auto mt-20 w-1/3">
+    <div className="min-h-screen bg-black py-6 flex justify-center items-start flex-shrink-0">
+      <div className="mx-auto w-1/3">
         <h1 className="text-3xl font-bold text-white text-center mb-8">
           Stock Price Predictor
         </h1>
         
         <form onSubmit={handleSubmit} className="space-y-4 w-full">
           <div className="flex flex-col gap-2">
+          <label htmlFor="symbol" className="block text-sm font-medium text-gray-300 mb-2">
+              Stock Symbol
+            </label>
             <input
               type="text"
               value={symbol}
