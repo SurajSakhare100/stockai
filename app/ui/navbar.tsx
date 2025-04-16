@@ -19,7 +19,7 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <span className="text-2xl font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
-                AI-Stocks
+                StockAI
               </span>
             </Link>
           </div>
