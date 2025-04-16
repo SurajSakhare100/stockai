@@ -2,22 +2,20 @@
 import { useState } from "react";
 import { getPrediction } from "../actions/getPrediction";
 
-interface PredictionData {
-  currentPrice: number;
-  previousPrice: number;
-  priceChange: number;
-  volume: number;
-  highPrice: number;
-  lowPrice: number;
-  openPrice: number;
-  analysis: string;
-  confidence: number;
-  recommendation: string;
-}
-
 export default function PredictionPage() {
   const [symbol, setSymbol] = useState("");
-  const [predictionData, setPredictionData] = useState<PredictionData | null>(null);
+  const [predictionData, setPredictionData] = useState<{
+    currentPrice: number;
+    previousPrice: number;
+    priceChange: number;
+    volume: number;
+    highPrice: number;
+    lowPrice: number;
+    openPrice: number;
+    analysis: string;
+    confidence: number;
+    recommendation: string;
+  } | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -127,11 +125,12 @@ export default function PredictionPage() {
             </div>
 
             <div className="p-4 bg-gray-800 rounded-lg">
+              
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="col-span-1">
-                  <h2 className="text-lg font-semibold text-white mb-3">
-                    Analysis & Recommendation
-                  </h2>
+                <h2 className="text-lg font-semibold text-white mb-3">
+                Analysis & Recommendation
+              </h2>
                   <div className="space-y-4">
                     <div>
                       <p className="text-gray-400 text-sm">Recommendation</p>
@@ -157,7 +156,7 @@ export default function PredictionPage() {
                 </div>
                 
                 <div className="col-span-2">
-                  <h1 className="mb-2 text-gray-400 text-md">Analysis</h1>
+                    <h1 className="  mb-2 text-gray-400 text-md">Analysis</h1>
                   <div className="">
                     <div className="bg-gray-700 rounded-lg p-3 max-h-[200px] overflow-y-auto">
                       <p className="text-white text-sm whitespace-pre-line">{predictionData.analysis}</p>
